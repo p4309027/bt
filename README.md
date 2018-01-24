@@ -9,3 +9,13 @@ open `cmd` and change the file directory to project directory:
 
 then run
 `node status_report.js input.txt`
+
+
+
+#### input.txt outcome
+```
+vader ALIVE 1508405807560 vader HELLO<br>
+leia DEAD 1508405807468 luke LOST leia<br>
+r2d2 ALIVE 1508405807467 luke FOUND r2d2<br>
+luke ALIVE 1508405807468 luke LOST leia<br>
+```
