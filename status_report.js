@@ -1,0 +1,96 @@
+// import node.js File System module
+const fs = require("fs");
+
+// objects to track the master and slave nodes
+var masterNodes = {};
+var slaveNodes = {};
+
+var linesAsArray = [];
+
+// Line formatter for output
+function formatLine(arr) {
+	return arr.toString().replace(/,/g, ' ');
+}
+
+// Error Message helper
+function errorMsgHelper(msg, errLine) {
+	console.log(`ERROR: ${msg}, please check following line\n ${formatLine(errLine)}`);
+}
+
+// Line to Array converter
+function setupLine(line) {
+	// convert each line into array
+	line = line.split(' ');
+	// last item index
+	let last = line.length-1;
+	// remove 'Carriage Return' (\r) from end of line
+	line[last] = line[last].replace(/\r/g, '');
+
+	return line;
+}
+
+// Line modifier
+function modifyLine(line, message, status, target) {
+	// message index
+	let mIndex = line.indexOf(message);
+	// master node name
+	let master = line[mIndex - 1];
+	// slave node name
+	let slave = line[mIndex + 1];
+
+	if (target === true && slave == undefined) {
+		return errorMsgHelper('Slave node is missing', line);
+	}
+
+	// this is for 'HELLO' case
+	// if slave is 'undefined' assign it with master
+	slave = slave || master;
+
+	if (!slaveNodes[slave]){		
+		if (message === 'LOST' && masterNodes[slave]){
+			line = masterNodes[slave];
+			line.splice(0, 2, slave, 'ALIVE');
+		} else {
+			// update the status of a node
+			line.unshift(slave, status);
+			// remove node generated time-stamp
+			line.splice(3, 1);
+			if (!masterNodes[master]) masterNodes[master] = line;
+		}
+		console.log(formatLine(line));
+		slaveNodes[slave] = line;
+	}
+}
+
+// read the input file
+// use synchronous approach to ensure the file is read completely
+// and store the file data 
+var input = fs.readFileSync(process.argv[2] || 'input.txt', 'utf8');
+
+// check the file if it's empty or not
+if (input == '') return console.log('The file is empty');
+
+// split the file by lines and convert it into array
+var lines = input.split('\n');
+
+// convert each line into array
+for (let line of lines) {	
+	linesAsArray.push(setupLine(line));
+}
+// re-arrange the array by network synchronised time
+linesAsArray.sort(function(a, b){return b[1]-a[1]});
+
+// iterate each line of the file
+// and output the outcome
+for (let line of linesAsArray) {
+	// inspect each line
+	if (line.includes('HELLO')) {
+		modifyLine(line, 'HELLO', 'ALIVE');
+	} else if (line.includes('FOUND')) {
+		modifyLine(line, 'FOUND', 'ALIVE', true);
+	} else if (line.includes('LOST')) {
+		modifyLine(line, 'LOST', 'DEAD', true);
+	} else {		
+		return errorMsgHelper('No activity is recorded', line);
+	}
+}
