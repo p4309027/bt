@@ -1,6 +1,7 @@
-BT code evaluation
+## BT code evaluation
 
-change your node version to 6.11.0
+tested on node `v6.11.0`
 
 clone the files & run followings from the file directory:
-node status_report.js input.txt
+<br>
+ `node status_report.js input.txt`
