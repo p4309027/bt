@@ -1,9 +1,9 @@
 // import node.js File System module
 const fs = require("fs");
 
-// objects to track the master and slave nodes
+// objects to track the master and worker nodes
 var masterNodes = {};
-var slaveNodes = {};
+var workerNodes = {};
 
 var linesAsArray = [];
 
@@ -35,30 +35,30 @@ function modifyLine(line, message, status, target) {
 	let mIndex = line.indexOf(message);
 	// master node name
 	let master = line[mIndex - 1];
-	// slave node name
-	let slave = line[mIndex + 1];
+	// worker node name
+	let worker = line[mIndex + 1];
 
-	if (target === true && slave == undefined) {
-		return errorMsgHelper('Slave node is missing', line);
+	if (target === true && worker == undefined) {
+		return errorMsgHelper('Targeted node is missing', line);
 	}
 
 	// this is for 'HELLO' case
-	// if slave is 'undefined' assign it with master
-	slave = slave || master;
+	// if worker is 'undefined' assign it with master
+	worker = worker || master;
 
-	if (!slaveNodes[slave]){		
-		if (message === 'LOST' && masterNodes[slave]){
-			line = masterNodes[slave];
-			line.splice(0, 2, slave, 'ALIVE');
+	if (!workerNodes[worker]){		
+		if (message === 'LOST' && masterNodes[worker]){
+			line = masterNodes[worker];
+			line.splice(0, 2, worker, 'ALIVE');
 		} else {
 			// update the status of a node
-			line.unshift(slave, status);
+			line.unshift(worker, status);
 			// remove node generated time-stamp
 			line.splice(3, 1);
 			if (!masterNodes[master]) masterNodes[master] = line;
 		}
 		console.log(formatLine(line));
-		slaveNodes[slave] = line;
+		workerNodes[worker] = line;
 	}
 }
 
