@@ -2,6 +2,10 @@
 
 tested on node `v6.11.0`
 
-clone the files & run followings from the file directory:
-<br><br>
- `node status_report.js input.txt`
+clone the files
+
+open `cmd` and chnage file directory to cloned project:
+`cd bt`
+
+then run
+`node status_report.js input.txt`
