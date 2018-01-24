@@ -2,9 +2,9 @@
 
 tested on node `v6.11.0`
 
-clone the files
+clone the project
 
-open `cmd` and change file directory to cloned project:
+open `cmd` and change the file directory to project directory:
 `cd bt`
 
 then run
