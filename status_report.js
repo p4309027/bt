@@ -6,6 +6,7 @@ var masterNodes = {};
 var workerNodes = {};
 
 var linesAsArray = [];
+var lastObj = ['0', '1', '2'];
 
 // Line formatter for output
 function formatLine(arr) {
@@ -47,9 +48,13 @@ function modifyLine(line, message, status, target) {
 	worker = worker || master;
 
 	if (!workerNodes[worker]){		
-		if (message === 'LOST' && masterNodes[worker]){
+		if (masterNodes[worker]){
 			line = masterNodes[worker];
 			line.splice(0, 2, worker, 'ALIVE');
+		} else if((line[0] > lastObj[2]) && !masterNodes[worker]){
+			line.unshift(worker, 'UNKNOWN');
+			line.splice(3, 1);
+			masterNodes[master] = line;
 		} else {
 			// update the status of a node
 			line.unshift(worker, status);
@@ -59,6 +64,7 @@ function modifyLine(line, message, status, target) {
 		}
 		console.log(formatLine(line));
 		workerNodes[worker] = line;
+		lastObj = line;
 	}
 }
 
