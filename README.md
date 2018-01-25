@@ -1,6 +1,6 @@
 ### BT code evaluation
 
-tested on node `v6.11.0`
+Tested on node `v6.11.0`
 
 1. clone the project
 
