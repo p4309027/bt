@@ -2,12 +2,12 @@
 
 tested on node `v6.11.0`
 
-clone the project
+1. clone the project
 
-open `cmd` and change the file directory to project directory:
+2. open `cmd` and change the file directory to 'bt' folder directory:
 `cd bt`
 
-then run
+3. then run
 `node status_report.js input.txt`
 
 
