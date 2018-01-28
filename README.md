@@ -2,14 +2,14 @@
 
 Tested on node `v6.11.0`
 
-1. open `cmd` and clone the project
-   (or download the project and unzip it) 
+1. open `cmd` and clone the project  
+(or download the project and unzip it) 
 
-2. change the file directory to `'bt'` folder directory:
+2. change the file directory to `'bt'` folder directory:  
    `cd bt`
 
-3. then run: `node app.js input.txt`
-   (or `npm start` with desired input file name as a parameter, e.g.: `npm start input.txt`)
+3. then run: `node app.js input.txt`  
+(or `npm start` with desired input file name as a parameter, e.g. : `npm start input.txt`)
 
 4. to test the 'status-report' module, run `npm test` 
 
