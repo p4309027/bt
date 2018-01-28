@@ -2,13 +2,16 @@
 
 Tested on node `v6.11.0`
 
-1. clone the project
+1. open `cmd` and clone the project
+   (or download the project and unzip it) 
 
-2. open `cmd` and change the file directory to 'bt' folder directory:
-`cd bt`
+2. change the file directory to `'bt'` folder directory:
+   `cd bt`
 
-3. then run
-`node status_report.js input.txt`
+3. then run: `node app.js input.txt`
+   (or `npm start` with desired input file name as a parameter, e.g.: `npm start input.txt`)
+
+4. to test the 'status-report' module, run `npm test` 
 
 
 #### input.txt file outcome
@@ -19,9 +22,8 @@ r2d2 ALIVE 1508405807467 luke FOUND r2d2
 luke ALIVE 1508405807468 luke LOST leia
 ```
 
-4. or `node status_report.js input.test.txt`
 
-#### input.test.txt file outcome
+#### test/input.test.txt file outcome
 ```
 vader ALIVE 1508405807560 vader HELLO
 leia DEAD 1508405807468 luke LOST leia
