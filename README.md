@@ -8,10 +8,13 @@ Tested on node `v6.11.0`
 2. change the file directory to 'bt' folder directory:  
    `cd bt`
 
-3. then run: `node app.js input.txt`  
+3. install dependency libraries:  
+   `npm i`
+
+4. then run: `node app.js input.txt`  
 (or `npm start` with desired input file name as a parameter, e.g. : `npm start input.txt`)
 
-4. to test the 'status-report' module, run `npm test` 
+5. to test the 'status-report' module, run `npm test` 
 
 
 #### input.txt file outcome
