@@ -14,7 +14,7 @@ Tested on node `v6.11.0`
 4. then run: `node app.js input.txt`  
 (or `npm start` with desired input file name as a parameter, e.g. : `npm start input.txt`)
 
-5. to test the 'status-report' module, run `npm test` 
+5. to test the 'status-report' module, run `npm test`  
 
 
 **input.txt** file outcome
@@ -23,9 +23,7 @@ vader ALIVE 1508405807560 vader HELLO
 leia DEAD 1508405807468 luke LOST leia
 r2d2 ALIVE 1508405807467 luke FOUND r2d2
 luke ALIVE 1508405807468 luke LOST leia
-```
-
-
+```  
 **test/input.test.txt** file outcome
 ```
 vader ALIVE 1508405807560 vader HELLO
