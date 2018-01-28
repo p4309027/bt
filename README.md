@@ -17,7 +17,7 @@ Tested on node `v6.11.0`
 5. to test the 'status-report' module, run `npm test` 
 
 
-#### input.txt file outcome
+**input.txt** file outcome
 ```
 vader ALIVE 1508405807560 vader HELLO
 leia DEAD 1508405807468 luke LOST leia
@@ -26,7 +26,7 @@ luke ALIVE 1508405807468 luke LOST leia
 ```
 
 
-#### test/input.test.txt file outcome
+**test/input.test.txt** file outcome
 ```
 vader ALIVE 1508405807560 vader HELLO
 leia DEAD 1508405807468 luke LOST leia
